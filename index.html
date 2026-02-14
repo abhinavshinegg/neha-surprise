@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neha ❤️ Abhinav</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body{
+    background:black;
+    color:white;
+    overflow:hidden;
+}
+
+/* 🎬 TUDUM INTRO WITH GLOW */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4)),
+        url("intro.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+}
+
+#intro h1{
+    font-size:60px;
+    color:#e50914;
+    letter-spacing:6px;
+    animation: zoomGlow 2s ease forwards, pulseGlow 2.5s infinite;
+    text-shadow:
+        0 0 10px rgba(229,9,20,0.8),
+        0 0 20px rgba(229,9,20,0.7),
+        0 0 40px rgba(229,9,20,0.6),
+        0 0 80px rgba(229,9,20,0.4);
+}
+
+/* Zoom in */
+@keyframes zoomGlow{
+    0%{transform:scale(0.5);opacity:0;}
+    100%{transform:scale(1);opacity:1;}
+}
+
+/* Glow pulse */
+@keyframes pulseGlow{
+    0%,100%{
+        text-shadow:
+            0 0 10px rgba(229,9,20,0.7),
+            0 0 25px rgba(229,9,20,0.6),
+            0 0 50px rgba(229,9,20,0.5);
+    }
+    50%{
+        text-shadow:
+            0 0 20px rgba(229,9,20,1),
+            0 0 45px rgba(229,9,20,0.9),
+            0 0 90px rgba(229,9,20,0.8);
+    }
+}
+
+/* HERO */
+.hero{
+    position:relative;
+    height:100vh;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4)),
+        url("neha.jpg") center/cover no-repeat;
+}
+
+/* LOGO */
+.logo{
+    position:absolute;
+    top:20px;
+    left:30px;
+    font-size:28px;
+    font-weight:bold;
+    color:#e50914;
+    letter-spacing:2px;
+}
+
+h1{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+h2{
+    font-weight:400;
+    margin-bottom:25px;
+    color:#ccc;
+}
+
+/* BUTTONS */
+button{
+    padding:12px 28px;
+    margin:10px;
+    font-size:16px;
+    border:none;
+    cursor:pointer;
+    border-radius:4px;
+    transition:0.3s;
+}
+
+#yesBtn{
+    background:#e50914;
+    color:white;
+}
+
+#yesBtn:hover{
+    background:#f40612;
+    transform:scale(1.05);
+}
+
+#noBtn{
+    background:rgba(109,109,110,0.7);
+    color:white;
+    position:absolute;
+}
+
+#funText{
+    margin-top:20px;
+    color:#ffb3b3;
+    font-size:18px;
+}
+
+/* PAGE 2 */
+#page2{
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4)),
+        url("couple.jpg") center/cover no-repeat;
+}
+
+.celebrate{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.subtitle{
+    font-size:22px;
+    color:#ddd;
+}
+
+/* HEARTS */
+.heart{
+    position:absolute;
+    font-size:20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh);opacity:1;}
+    to{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body onclick="startMusic()">
+
+<!-- 🎬 INTRO -->
+<div id="intro">
+    <h1>Happy Valentine's Day</h1>
+</div>
+
+<audio id="tudum">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-cinematic-hit-1994.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="hero" id="page1">
+    <div class="logo">NEHA❤️ABHINAV</div>
+    <h1>Neha ❤️</h1>
+    <h2>Will you be my Valentine?</h2>
+
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+
+    <div id="funText"></div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="hero">
+    <div class="logo">NEHA❤️ABHINAV</div>
+    <div class="celebrate">She Said YES 😭💖</div>
+    <div class="subtitle">Forever begins now, Neha.</div>
+    <div class="subtitle">Love you endlessly ❤️ – Abhinav</div>
+</div>
+
+<script>
+const intro=document.getElementById("intro");
+const page1=document.getElementById("page1");
+const page2=document.getElementById("page2");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const funText=document.getElementById("funText");
+
+let noCount=0;
+
+/* INTRO */
+window.onload=()=>{
+    document.getElementById("tudum").play();
+    setTimeout(()=>{
+        intro.style.display="none";
+        page1.style.display="flex";
+    },3000);
+};
+
+function startMusic(){
+    document.getElementById("bgMusic").play();
+}
+
+/* NO BUTTON */
+noBtn.addEventListener("mouseover",()=>{
+    noBtn.style.left=Math.random()*(window.innerWidth-100)+"px";
+    noBtn.style.top=Math.random()*(window.innerHeight-50)+"px";
+});
+
+noBtn.addEventListener("click",()=>{
+    const texts=[
+        "Are you sure, Neha? 🥺",
+        "Think again… Abhinav is premium 😌",
+        "No cancellation allowed 😂",
+        "Error 404: No not found 😜"
+    ];
+    funText.innerHTML=texts[Math.min(noCount++,texts.length-1)];
+});
+
+/* YES BUTTON */
+yesBtn.addEventListener("click",()=>{
+    page1.style.display="none";
+    page2.style.display="flex";
+    setInterval(createHeart,400);
+});
+
+/* HEARTS */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+20)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+}
+</script>
+
+</body>
+</html>
